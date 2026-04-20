@@ -18,16 +18,16 @@
             theme: {
                 extend: {
                     "colors": {
-                        "primary": "#82a540", // Pantone 7741 C
-                        "brand-green": "#82a540", // Pantone 7741 C
-                        "brand-navy": "#0b2840", // PANTONE 296 C
-                        "on-surface": "#231f20", // PANTONE Black
+                        "primary": "#82a540",
+                        "brand-green": "#82a540",
+                        "brand-navy": "#0b2840",
+                        "on-surface": "#231f20",
                         "surface": "#ffffff",
                         "surface-container-low": "#ffffff",
                         "surface-container-high": "#d3d3d3",
                         "surface-container-highest": "#d3d3d3",
                         "surface-container-lowest": "#ffffff",
-                        "on-surface-variant": "#888888", // PANTONE Cool Gray 8C
+                        "on-surface-variant": "#888888",
                         "primary-container": "#82a540"
                     },
                     "borderRadius": {
@@ -71,8 +71,10 @@
             background: linear-gradient(135deg, #0b2840 0%, #163a5a 100%);
         }
 
-        .hero-overlay {
-            background: linear-gradient(to right, rgba(11, 40, 64, 0.7) 0%, rgba(11, 40, 64, 0.2) 100%);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .clean-shadow {
@@ -82,14 +84,10 @@
         .editorial-shadow {
             box-shadow: 0px 20px 40px rgba(35, 31, 32, 0.06);
         }
-
-        .logo-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-        }
     </style>
 </head>
 
-<body class="bg-surface font-akhand-regular text-on-surface antialiased">
+<body class="bg-surface font-akhand-regular text-on-surface antialiased flex flex-col min-h-screen">
     <!-- TopNavBar -->
     <nav
         class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md flex justify-between items-center px-8 md:px-12 py-3 max-w-full mx-auto font-akhand-regular antialiased text-sm tracking-tight border-b border-surface-container-high/50">
@@ -97,12 +95,12 @@
             Selçuk tüme
         </div>
         <div class="hidden md:flex space-x-6 items-center">
-            <a class="text-brand-green font-bold border-b-2 border-brand-green pb-1" href="index.html">Anasayfa</a>
+            <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="index.html">Anasayfa</a>
             <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300"
                 href="uyelerimiz.html">Üyelerimiz</a>
             <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300"
                 href="projelerimiz.html">Projelerimiz</a>
-            <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="iletisim.html">İletişim</a>
+            <a class="text-brand-green font-bold border-b-2 border-brand-green pb-1" href="iletisim.html">İletişim</a>
         </div>
         <div class="flex items-center space-x-1">
             <a aria-label="Instagram"
@@ -124,153 +122,87 @@
             </a>
         </div>
     </nav>
-    <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center overflow-hidden pt-16">
-            <div class="absolute inset-0 z-0">
-                <img class="w-full h-full object-cover object-top"
-                    data-alt="expansive precision agriculture field at sunrise with geometric patterns of crops and soft golden atmosphere"
-                    src="assets/AnaSayfaBg.png" />
-                <div class="absolute inset-0 hero-overlay"></div>
-            </div>
-            <div
-                class="relative z-10 px-8 md:px-12 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-7">
-                    <h1 class="text-6xl md:text-8xl font-akhand-bold text-white leading-[0.9] tracking-tighter mb-6">
-                        Geleceğin <br />Vizyonu <br /><span class="text-brand-green">Selçuk'ta</span> Yetişiyor.
-                    </h1>
-                    <p class="text-lg text-white/90 max-w-lg leading-relaxed mb-8 font-akhand-regular">
-                        Teknolojinin sınırlarını zorlayan, inovasyon odaklı projelerimizle yarının dünyasını farklı
-                        disiplinlerin gücüyle bugünden inşa ediyoruz. Akademik disiplin, pratik uygulama ve çok seslilik
-                        bir arada.
-                    </p>
-                    <div class="flex space-x-4">
-                        <button
-                            class="bg-brand-green text-white px-6 py-3 rounded-xl font-akhand-bold text-base hover:shadow-lg transition-all">
-                            Projelerimizi İncele
-                        </button>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJx0UnQ5TlKlTvnm6l4myq7bxz3Gm96ybTbINIBhqI7Y583w/viewform" target="_blank"
-                            class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-xl font-akhand-bold text-base hover:bg-white/10 transition-all">
-                            Bize Katıl
-                        </a>
-                    </div>
+
+    <main class="flex-grow pt-24 pb-20 bg-[#f7f7f7]">
+        <div class="max-w-[600px] mx-auto px-6">
+            <!-- Contact Card -->
+            <div class="bg-white rounded-[12px] shadow-sm border border-black/5 p-8 md:p-12">
+                <!-- Header -->
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-akhand-bold text-brand-navy mb-3">İletişim Formu</h1>
+                    <p class="text-on-surface-variant font-akhand-regular text-base">Sorularınız için bize yazabilirsiniz.</p>
                 </div>
-                <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                    <div
-                        class="relative w-full max-w-[320px] aspect-square logo-glow bg-white rounded-full flex items-center justify-center p-6 mx-auto">
-                        <img alt="Selçuk Üniversitesi Tarım Teknolojileri Kümelenmesi Öğrenci Topluluğu Logo"
-                            class="w-full h-full object-contain"
-                            src="assets/TakımLogo.jpeg" />
+
+                <!-- Form -->
+                <form class="space-y-6">
+                    <!-- Name Field -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-akhand-bold text-brand-navy uppercase tracking-wider" for="adiniz">Adınız</label>
+                        <input class="w-full bg-[#fcfcfc] border-surface-container-high focus:border-brand-green focus:ring-brand-green rounded-xl p-4 font-akhand-regular outline-none transition-all placeholder:text-on-surface-variant/30" 
+                            id="adiniz" placeholder="Adınızı giriniz" type="text" required />
                     </div>
-                </div>
-            </div>
-        </section>
-        <!-- Biz Kimiz? Section -->
-        <!-- Biz Kimiz? Section -->
-        <section class="py-16 px-8 md:px-10 bg-surface-container-low">
-            <div class="max-w-6xl mx-auto">
-                <div class="bg-white rounded-[1.5rem] p-8 md:p-12 clean-shadow">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                        <div class="space-y-6">
-                            <div>
-                                <h2
-                                    class="text-xs font-akhand-regular text-on-surface-variant tracking-[0.2em] mb-3 uppercase">
-                                    BİZ KİMİZ?</h2>
-                                <h1 class="text-3xl lg:text-4xl font-akhand-bold text-brand-navy leading-tight">
-                                    "Toprağın bilgeliği ile teknolojinin gücünü bir araya getiriyoruz."
-                                </h1>
-                            </div>
-                            <p class="text-base text-on-surface-variant font-akhand-regular leading-relaxed max-w-lg">
-                                TÜME; üretimin geleceğini birlikte inşa etmek için bir araya gelen bir ekosistemi temsil
-                                eder. Amacımız daha verimli, daha sürdürülebilir ve daha yenilikçi bir üretim modeli
-                                oluşturmaktır.
-                            </p>
-                        </div>
+
+                    <!-- Email Field -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-akhand-bold text-brand-navy uppercase tracking-wider" for="email">E-posta</label>
+                        <input class="w-full bg-[#fcfcfc] border-surface-container-high focus:border-brand-green focus:ring-brand-green rounded-xl p-4 font-akhand-regular outline-none transition-all placeholder:text-on-surface-variant/30" 
+                            id="email" placeholder="E-posta adresiniz" type="email" required />
+                    </div>
+
+                    <!-- Subject Field -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-akhand-bold text-brand-navy uppercase tracking-wider" for="konu">Konu</label>
                         <div class="relative">
-                            <div class="relative z-10">
-                                <div
-                                    class="absolute -bottom-4 -right-4 w-full h-full border-2 border-dashed border-brand-navy/20 rounded-xl pointer-events-none translate-x-2 translate-y-2">
-                                </div>
-                                <div
-                                    class="relative bg-white p-3 rounded-xl clean-shadow transform rotate-3 overflow-hidden">
-                                    <img alt="Selçuk Üniversitesi Ekibi"
-                                        class="w-full h-auto aspect-[4/3] object-cover rounded-lg"
-                                        src="assets/AnaSayfaFoto1.png" />
-                                </div>
+                            <select class="w-full bg-[#fcfcfc] border-surface-container-high focus:border-brand-green focus:ring-brand-green rounded-xl p-4 font-akhand-regular outline-none appearance-none cursor-pointer transition-all" id="konu">
+                                <option value="destek">Destek</option>
+                                <option value="isbirligi">İş Birliği</option>
+                                <option value="genel">Genel</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-on-surface-variant">
+                                <span class="material-symbols-outlined">expand_more</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Vizyon & Misyon Section -->
-        <section class="py-16 px-8 md:px-10 bg-white">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Vizyon Card -->
-                    <div
-                        class="relative group p-10 bg-surface-container-low rounded-3xl overflow-hidden border border-brand-green/10 transition-all hover:shadow-2xl hover:-translate-y-1">
-                        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <span class="material-symbols-outlined text-8xl text-brand-green">visibility</span>
-                        </div>
-                        <div class="relative z-10">
-                            <span
-                                class="inline-block px-4 py-1 rounded-full bg-brand-green text-white text-xs font-akhand-bold tracking-widest uppercase mb-6">Vizyon</span>
-                            <p class="text-2xl font-akhand-bold text-brand-navy leading-snug">
-                                "Dijital tarım ve hayvancılık dönüşümünde öncü, teknoloji odaklı ve sürdürülebilir
-                                üretim
-                                modelleriyle global düzeyde değer yaratan bir topluluk olmak."
-                            </p>
-                        </div>
+                    <!-- Message Field -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-akhand-bold text-brand-navy uppercase tracking-wider" for="mesaj">Mesajınız</label>
+                        <textarea class="w-full bg-[#fcfcfc] border-surface-container-high focus:border-brand-green focus:ring-brand-green rounded-xl p-4 font-akhand-regular outline-none resize-none transition-all placeholder:text-on-surface-variant/30" 
+                            id="mesaj" placeholder="Mesajınızı buraya yazın..." rows="6" required></textarea>
                     </div>
-                    <!-- Misyon Card -->
-                    <div
-                        class="relative group p-10 bg-brand-navy rounded-3xl overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-1">
-                        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <span class="material-symbols-outlined text-8xl text-white">rocket_launch</span>
-                        </div>
-                        <div class="relative z-10">
-                            <span
-                                class="inline-block px-4 py-1 rounded-full bg-brand-green text-white text-xs font-akhand-bold tracking-widest uppercase mb-6">Misyon</span>
-                            <p class="text-xl font-akhand-bold text-white leading-snug">
-                                "Tarım ve hayvancılık alanında yerli ve milli teknolojik çözümler geliştirerek,
-                                ülkemizin bu
-                                alanındaki dışa bağımlılığını azaltmak ve disiplinlerarası bir çalışma kültürüyle
-                                geleceğin
-                                mühendislerini ve projelerini yetiştirmek."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Main Supporter Section -->
-        <section class="py-16 px-8 md:px-10 bg-brand-navy text-white overflow-hidden relative">
-            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-akhand-bold mb-4 uppercase tracking-tight">Ana Destekçimiz</h2>
-                    <p class="text-slate-300 text-base mb-6 leading-relaxed font-akhand-regular">
-                        Vizyonumuza inanan ve projelerimize güç katan kurumsal partnerlerimizle geleceği inşa ediyoruz.
-                    </p>
-                    <a href="https://www.tume.org.tr/" target="_blank"
-                        class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 px-5 py-3 rounded-xl transition-all group text-sm">
-                        <span class="material-symbols-outlined text-brand-green text-xl">open_in_new</span>
-                        <span class="font-akhand-bold">Web Sitemizi Ziyaret Edin</span>
-                    </a>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="p-8 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 relative">
-                        <div class="absolute inset-0 bg-brand-green/20 blur-3xl rounded-full"></div>
-                        <img alt="TÜME Logo" class="w-full max-w-[240px] h-auto relative z-10"
-                            src="assets/TümeLogo.png" />
+                    <!-- Submit Button -->
+                    <div class="pt-4 text-center">
+                        <button class="w-full bg-brand-green text-white font-akhand-bold py-4 rounded-[8px] hover:shadow-lg hover:brightness-105 active:scale-[0.98] transition-all" type="submit">
+                            Gönder
+                        </button>
+                        <p class="mt-4 text-xs text-on-surface-variant font-akhand-regular tracking-wide">
+                            En kısa sürede dönüş yapıyoruz.
+                        </p>
                     </div>
-                </div>
-            </div>
-        </section>
+                </form>
 
-    </main>
+                <!-- Divider -->
+                <div class="flex items-center gap-4 my-10">
+                    <div class="flex-grow h-px bg-surface-container-high"></div>
+                    <span class="text-[10px] text-on-surface-variant font-akhand-bold uppercase tracking-widest">VEYA</span>
+                    <div class="flex-grow h-px bg-surface-container-high"></div>
+                </div>
+
+                <!-- WhatsApp Button -->
+                <div>
+                    <a href="https://wa.me/905000000000" target="_blank" 
+                        class="w-full border-2 border-brand-green/30 text-brand-green font-akhand-bold py-4 rounded-[8px] flex items-center justify-center gap-3 hover:bg-brand-green/5 transition-all group">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    WhatsApp’tan Yaz
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
     <!-- Footer -->
     <footer
         class="w-full py-16 px-12 bg-brand-navy font-akhand-regular text-xs uppercase tracking-[0.1em] border-t border-white/5">
@@ -289,13 +221,11 @@
             </div>
         </div>
     </footer>
+
     <!-- Privacy Policy Modal -->
     <div id="privacy-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <!-- Background overlay -->
             <div class="fixed inset-0 transition-opacity bg-black/60 backdrop-blur-sm" onclick="togglePrivacyModal(false)" aria-hidden="true"></div>
-
-            <!-- Modal panel -->
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div class="inline-block px-8 py-10 overflow-hidden text-left align-bottom transition-all transform bg-white shadow-2xl rounded-[2.5rem] sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
                 <div class="absolute top-0 right-0 pt-6 pr-6">
