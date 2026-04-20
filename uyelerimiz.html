@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="tr">
+<html class="light" lang="tr">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Üyelerimiz | Selçuk TÜME</title>
+  <meta name="description" content="Selçuk TÜME ekibi – mühendislik, ziraat ve veterinerlik disiplinlerinden bir araya gelen takım üyeleri." />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
@@ -86,16 +88,29 @@
     .logo-glow {
       filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
     }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
   </style>
 </head>
 
 <body class="bg-surface font-akhand-regular text-on-surface antialiased">
   <!-- TopNavBar -->
   <nav
-    class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md flex justify-between items-center px-8 md:px-12 py-3 max-w-full mx-auto font-akhand-regular antialiased text-sm tracking-tight border-b border-surface-container-high/50">
-    <div class="text-xl md:text-2xl font-akhand-bold text-brand-navy uppercase tracking-tighter">
+    class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md font-akhand-regular antialiased text-sm tracking-tight border-b border-surface-container-high/50">
+    <div class="flex justify-between items-center px-8 md:px-12 py-3 max-w-full mx-auto">
+    <a href="index.html" class="text-xl md:text-2xl font-akhand-bold text-brand-navy uppercase tracking-tighter hover:text-brand-green transition-colors duration-300">
         Selçuk tüme
-    </div>
+    </a>
     <div class="hidden md:flex space-x-6 items-center">
         <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="index.html">Anasayfa</a>
         <a class="text-brand-green font-bold border-b-2 border-brand-green pb-1" href="uyelerimiz.html">Üyelerimiz</a>
@@ -121,6 +136,20 @@
                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
             </svg>
         </a>
+        <!-- Mobile hamburger button -->
+        <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-brand-navy hover:text-brand-green hover:bg-brand-green/10 transition-all" aria-label="Menüyü Aç/Kapat" onclick="toggleMobileMenu()">
+            <span class="material-symbols-outlined text-2xl" id="hamburger-icon">menu</span>
+        </button>
+    </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-surface-container-high/30">
+        <div class="flex flex-col px-8 py-4 space-y-4">
+            <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2 border-b border-surface-container-high/50" href="index.html">Anasayfa</a>
+            <a class="text-brand-green font-bold py-2 border-b border-surface-container-high/50" href="uyelerimiz.html">Üyelerimiz</a>
+            <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2 border-b border-surface-container-high/50" href="projelerimiz.html">Projelerimiz</a>
+            <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2" href="iletisim.html">İletişim</a>
+        </div>
     </div>
   </nav>
   <main class="pt-16">
@@ -150,6 +179,10 @@
             class="filter-btn px-8 py-3 rounded-full bg-primary text-white font-bold text-sm transition-all hover:shadow-lg shadow-primary/20"
             style="">Hepsi</button>
 
+          <button onclick="filterMembers('yonetim', this)"
+            class="filter-btn px-8 py-3 rounded-full bg-surface-container-lowest text-brand-navy font-bold text-sm transition-all hover:bg-primary/10"
+            style="">Yönetim</button>
+
           <button onclick="filterMembers('muhendislik', this)"
             class="filter-btn px-8 py-3 rounded-full bg-surface-container-lowest text-brand-navy font-bold text-sm transition-all hover:bg-primary/10"
             style="">Mühendislik</button>
@@ -172,11 +205,11 @@
           <div class="relative mb-6">
             <div
               class="mx-auto overflow-hidden ring-4 ring-surface-container transition-all group-hover:ring-primary/20 rounded-full w-36 h-36">
-              <img alt="Y. Can Olğun" class="w-full h-full object-cover object-top" src="assets/uyeler/yusufcan_olgun.jpg" />
+              <img alt="Yusuf Can Olğun" class="w-full h-full object-cover object-top" loading="lazy" src="assets/uyeler/yusufcan_olgun.jpg" />
             </div>
           </div>
           <div class="text-center">
-            <h3 class="font-akhand-bold text-lg text-brand-navy mb-1">Y. Can Olğun</h3>
+            <h3 class="font-akhand-bold text-lg text-brand-navy mb-1">Yusuf Can Olğun</h3>
             <p class="text-brand-green font-bold text-xs uppercase tracking-tighter mb-6 font-label">Başkan</p>
             <a class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-container-high text-brand-navy hover:bg-primary hover:text-white transition-all"
               href="https://www.linkedin.com/in/yusufcanolgun" target="_blank" rel="noopener noreferrer">
@@ -196,7 +229,7 @@
           <div class="relative mb-6">
             <div
               class="mx-auto overflow-hidden ring-4 ring-surface-container transition-all group-hover:ring-primary/20 rounded-full w-36 h-36">
-              <img alt="Esameldin Kamaleldin" class="w-full h-full object-cover object-top"
+              <img alt="Esameldin Kamaleldin" class="w-full h-full object-cover object-top" loading="lazy"
                 src="assets/uyeler/esameldin_kamaleldin.jpg" />
             </div>
           </div>
@@ -545,6 +578,7 @@
           <div class="bg-white/5 backdrop-blur-xl p-1 rounded-2xl border border-white/10 rotate-3 shadow-2xl">
             <img alt="Collaboration"
               class="rounded-xl opacity-90 grayscale hover:grayscale-0 transition-all duration-700"
+              loading="lazy"
               src="assets/Collaboration.jpg"
               style="" />
           </div>
@@ -569,14 +603,14 @@
       </div>
     </div>
   </footer>
-  <script>
+    <script>
     function filterMembers(category, clickedBtn) {
       const cards = document.querySelectorAll('.member-card');
       cards.forEach(card => {
         if (category === 'hepsi' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
+          card.classList.remove('hidden');
         } else {
-          card.style.display = 'none';
+          card.classList.add('hidden');
         }
       });
 
@@ -594,6 +628,21 @@
       clickedBtn.classList.add(...activeClasses);
       clickedBtn.classList.add('hover:shadow-lg');
     }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('hamburger-icon');
+      menu.classList.toggle('open');
+      icon.textContent = menu.classList.contains('open') ? 'close' : 'menu';
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('hamburger-icon').textContent = 'menu';
+      });
+    });
   </script>
     <!-- Privacy Policy Modal -->
     <div id="privacy-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
