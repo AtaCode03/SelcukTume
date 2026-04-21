@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # main branch'e her push'ta çalışır
+
+# GitHub Pages için gerekli izinler
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Aynı anda sadece bir deploy çalışsın; önce başlayanı iptal et
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # 1) Kodu çek
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2) config.js dosyasını config.example.js'den oluştur
+      - name: Create config.js from template
+        run: cp Kodlar/config.example.js Kodlar/config.js
+
+      # 3) Placeholder'ları GitHub Secrets ile değiştir (sed)
+      - name: Inject EmailJS secrets into config.js
+        env:
+          SERVICE_ID:  ${{ secrets.EMAILJS_SERVICE_ID }}
+          TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+          PUBLIC_KEY:  ${{ secrets.EMAILJS_PUBLIC_KEY }}
+        run: |
+          sed -i "s|REPLACE_WITH_SERVICE_ID|${SERVICE_ID}|g"   Kodlar/config.js
+          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${TEMPLATE_ID}|g" Kodlar/config.js
+          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${PUBLIC_KEY}|g"   Kodlar/config.js
+
+      # 4) Sonucu kontrol et (secret değerleri logda görünmez, sadece satır sayısını doğrular)
+      - name: Verify config.js was generated
+        run: |
+          if grep -q "REPLACE_WITH" Kodlar/config.js; then
+            echo "ERROR: Placeholder values still present in config.js. Check your repository secrets!"
+            exit 1
+          fi
+          echo "config.js injection successful."
+
+      # 5) GitHub Pages artifact'ını hazırla (tüm repo kök dizinini yükle)
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Sitenin kök dizini — ihtiyaca göre "Kodlar" olarak da değiştirilebilir
+          path: "."
+
+      # 6) Deploy!
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
