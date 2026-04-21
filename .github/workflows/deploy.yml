@@ -5,75 +5,27 @@ on:
     branches:
       - main  # main branch'e her push'ta otomatik çalışır
 
-# ─── İzinler ──────────────────────────────────────────────────────────────────
-# contents:write  → runner'ın workspace dosyalarını okuyup yazabilmesi için
-# pages:write     → GitHub Pages artifact push edebilmek için
-# id-token:write  → OIDC token (actions/deploy-pages için zorunlu)
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
-# Aynı anda sadece bir deploy; çakışmayı önler
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
   deploy:
-    name: Build & Deploy
+    name: Deploy
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # ── 1) Kodu çek ─────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2) Debug: Dizin yapısını listele (sorun giderme için) ───────────────
-      - name: List repository files
-        shell: bash
-        run: |
-          echo "=== GITHUB_WORKSPACE: $GITHUB_WORKSPACE ==="
-          echo ""
-          echo "=== Kök dizindeki dosyalar ==="
-          ls -la "$GITHUB_WORKSPACE"
-
-      # ── 3) Placeholder'ları GitHub Secrets ile değiştir ─────────────────────
-      - name: Inject EmailJS secrets into iletisim.html
-        shell: bash
-        env:
-          EMAILJS_SERVICE_ID:  ${{ secrets.EMAILJS_SERVICE_ID }}
-          EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
-          EMAILJS_PUBLIC_KEY:  ${{ secrets.EMAILJS_PUBLIC_KEY }}
-        run: |
-          FILE="$GITHUB_WORKSPACE/iletisim.html"
-
-          sed -i "s|REPLACE_WITH_SERVICE_ID|${EMAILJS_SERVICE_ID}|g"   "$FILE"
-          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${EMAILJS_TEMPLATE_ID}|g" "$FILE"
-          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${EMAILJS_PUBLIC_KEY}|g"   "$FILE"
-
-          echo "Injection tamamlandı."
-
-      # ── 4) Doğrulama: Hâlâ placeholder var mı? ──────────────────────────────
-      - name: Verify injection was successful
-        shell: bash
-        run: |
-          FILE="$GITHUB_WORKSPACE/iletisim.html"
-
-          if grep -q "REPLACE_WITH" "$FILE"; then
-            echo "HATA: iletisim.html içinde hâlâ placeholder değerler var!"
-            echo "Lütfen GitHub Secrets'ı kontrol et:"
-            echo "  Settings → Secrets and variables → Actions"
-            echo "  EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY"
-            exit 1
-          fi
-
-          echo "✅ Tüm placeholder'lar başarıyla değiştirildi."
-
-      # ── 6) GitHub Pages artifact'ını hazırla ────────────────────────────────
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -82,7 +34,6 @@ jobs:
         with:
           path: "${{ github.workspace }}"
 
-      # ── 7) Deploy! ───────────────────────────────────────────────────────────
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

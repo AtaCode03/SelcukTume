@@ -269,13 +269,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         // ─── EmailJS Credentials ───────────────────────────────────────────────
-        // GitHub Actions bu değerleri deploy sırasında GitHub Secrets ile değiştirir.
-        const serviceID  = "REPLACE_WITH_SERVICE_ID";
-        const templateID = "REPLACE_WITH_TEMPLATE_ID";
-        const publicKey  = "REPLACE_WITH_PUBLIC_KEY";
+        const serviceID  = "service_dzjrltr";
+        const templateID = "template_s3iqnkv";
+        const publicKey  = "ZmwZspDM7LtwfppYy";
 
         emailjs.init(publicKey);
-        // ──────────────────────────────────────────────────────────────────────
 
         function togglePrivacyModal(show) {
             const modal = document.getElementById('privacy-modal');
