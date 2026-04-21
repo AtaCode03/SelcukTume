@@ -41,39 +41,30 @@ jobs:
           echo "=== Kök dizindeki dosyalar ==="
           ls -la "$GITHUB_WORKSPACE"
 
-      # ── 3) config.js dosyasını şablondan oluştur ────────────────────────────
-      - name: Create config.js from template
-        shell: bash
-        run: |
-          cp "$GITHUB_WORKSPACE/config.example.js" \
-             "$GITHUB_WORKSPACE/config.js"
-          echo "config.js oluşturuldu:"
-          cat "$GITHUB_WORKSPACE/config.js"
-
-      # ── 4) Placeholder'ları GitHub Secrets ile değiştir ─────────────────────
-      - name: Inject EmailJS secrets into config.js
+      # ── 3) Placeholder'ları GitHub Secrets ile değiştir ─────────────────────
+      - name: Inject EmailJS secrets into iletisim.html
         shell: bash
         env:
           EMAILJS_SERVICE_ID:  ${{ secrets.EMAILJS_SERVICE_ID }}
           EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
           EMAILJS_PUBLIC_KEY:  ${{ secrets.EMAILJS_PUBLIC_KEY }}
         run: |
-          CONFIG="$GITHUB_WORKSPACE/config.js"
+          FILE="$GITHUB_WORKSPACE/iletisim.html"
 
-          sed -i "s|REPLACE_WITH_SERVICE_ID|${EMAILJS_SERVICE_ID}|g"   "$CONFIG"
-          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${EMAILJS_TEMPLATE_ID}|g" "$CONFIG"
-          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${EMAILJS_PUBLIC_KEY}|g"   "$CONFIG"
+          sed -i "s|REPLACE_WITH_SERVICE_ID|${EMAILJS_SERVICE_ID}|g"   "$FILE"
+          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${EMAILJS_TEMPLATE_ID}|g" "$FILE"
+          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${EMAILJS_PUBLIC_KEY}|g"   "$FILE"
 
-          echo "Injection tamamlandı. Satır sayısı: $(wc -l < $CONFIG)"
+          echo "Injection tamamlandı."
 
-      # ── 5) Doğrulama: Hâlâ placeholder var mı? ──────────────────────────────
+      # ── 4) Doğrulama: Hâlâ placeholder var mı? ──────────────────────────────
       - name: Verify injection was successful
         shell: bash
         run: |
-          CONFIG="$GITHUB_WORKSPACE/config.js"
+          FILE="$GITHUB_WORKSPACE/iletisim.html"
 
-          if grep -q "REPLACE_WITH" "$CONFIG"; then
-            echo "HATA: config.js içinde hâlâ placeholder değerler var!"
+          if grep -q "REPLACE_WITH" "$FILE"; then
+            echo "HATA: iletisim.html içinde hâlâ placeholder değerler var!"
             echo "Lütfen GitHub Secrets'ı kontrol et:"
             echo "  Settings → Secrets and variables → Actions"
             echo "  EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY"

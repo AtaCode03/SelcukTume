@@ -267,18 +267,16 @@
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!-- config.js is excluded from git. Copy config.example.js and fill in your real values. -->
-    <script src="config.js"></script>
     <script type="text/javascript">
-        (function() {
-            if (window.TUME_CONFIG && window.TUME_CONFIG.EMAILJS_PUBLIC_KEY) {
-                emailjs.init(window.TUME_CONFIG.EMAILJS_PUBLIC_KEY);
-            } else {
-                console.error('TUME_CONFIG not found. Please create config.js from config.example.js.');
-            }
-        })();
-    </script>
-    <script>
+        // ─── EmailJS Credentials ───────────────────────────────────────────────
+        // GitHub Actions bu değerleri deploy sırasında GitHub Secrets ile değiştirir.
+        const serviceID  = "REPLACE_WITH_SERVICE_ID";
+        const templateID = "REPLACE_WITH_TEMPLATE_ID";
+        const publicKey  = "REPLACE_WITH_PUBLIC_KEY";
+
+        emailjs.init(publicKey);
+        // ──────────────────────────────────────────────────────────────────────
+
         function togglePrivacyModal(show) {
             const modal = document.getElementById('privacy-modal');
             if (show) {
@@ -306,7 +304,7 @@
 
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            
+
             const form = event.target;
             const status = document.getElementById('form-status');
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -317,8 +315,7 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-            const cfg = window.TUME_CONFIG || {};
-            emailjs.sendForm(cfg.EMAILJS_SERVICE_ID || '', cfg.EMAILJS_TEMPLATE_ID || '', form)
+            emailjs.sendForm(serviceID, templateID, form)
                 .then(() => {
                     status.textContent = "Mesajınız Başarıyla Gönderildi!";
                     status.className = "mt-4 text-xs text-brand-green font-akhand-bold tracking-wide";
@@ -333,8 +330,6 @@
                     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 });
         });
-
-
     </script>
 </body>
 
