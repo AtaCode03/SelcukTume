@@ -3,15 +3,18 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main   # main branch'e her push'ta çalışır
+      - main  # main branch'e her push'ta otomatik çalışır
 
-# GitHub Pages için gerekli izinler
+# ─── İzinler ──────────────────────────────────────────────────────────────────
+# contents:write  → runner'ın workspace dosyalarını okuyup yazabilmesi için
+# pages:write     → GitHub Pages artifact push edebilmek için
+# id-token:write  → OIDC token (actions/deploy-pages için zorunlu)
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Aynı anda sadece bir deploy çalışsın; önce başlayanı iptal et
+# Aynı anda sadece bir deploy; çakışmayı önler
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -25,45 +28,70 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      # 1) Kodu çek
+      # ── 1) Kodu çek ─────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) config.js dosyasını config.example.js'den oluştur
+      # ── 2) Debug: Dizin yapısını listele (sorun giderme için) ───────────────
+      - name: List repository files
+        shell: bash
+        run: |
+          echo "=== GITHUB_WORKSPACE: $GITHUB_WORKSPACE ==="
+          echo ""
+          echo "=== Kök dizindeki dosyalar ==="
+          ls -la "$GITHUB_WORKSPACE"
+
+      # ── 3) config.js dosyasını şablondan oluştur ────────────────────────────
       - name: Create config.js from template
-        run: cp Kodlar/config.example.js Kodlar/config.js
+        shell: bash
+        run: |
+          cp "$GITHUB_WORKSPACE/config.example.js" \
+             "$GITHUB_WORKSPACE/config.js"
+          echo "config.js oluşturuldu:"
+          cat "$GITHUB_WORKSPACE/config.js"
 
-      # 3) Placeholder'ları GitHub Secrets ile değiştir (sed)
+      # ── 4) Placeholder'ları GitHub Secrets ile değiştir ─────────────────────
       - name: Inject EmailJS secrets into config.js
+        shell: bash
         env:
-          SERVICE_ID:  ${{ secrets.EMAILJS_SERVICE_ID }}
-          TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
-          PUBLIC_KEY:  ${{ secrets.EMAILJS_PUBLIC_KEY }}
+          EMAILJS_SERVICE_ID:  ${{ secrets.EMAILJS_SERVICE_ID }}
+          EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+          EMAILJS_PUBLIC_KEY:  ${{ secrets.EMAILJS_PUBLIC_KEY }}
         run: |
-          sed -i "s|REPLACE_WITH_SERVICE_ID|${SERVICE_ID}|g"   Kodlar/config.js
-          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${TEMPLATE_ID}|g" Kodlar/config.js
-          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${PUBLIC_KEY}|g"   Kodlar/config.js
+          CONFIG="$GITHUB_WORKSPACE/config.js"
 
-      # 4) Sonucu kontrol et (secret değerleri logda görünmez, sadece satır sayısını doğrular)
-      - name: Verify config.js was generated
+          sed -i "s|REPLACE_WITH_SERVICE_ID|${EMAILJS_SERVICE_ID}|g"   "$CONFIG"
+          sed -i "s|REPLACE_WITH_TEMPLATE_ID|${EMAILJS_TEMPLATE_ID}|g" "$CONFIG"
+          sed -i "s|REPLACE_WITH_PUBLIC_KEY|${EMAILJS_PUBLIC_KEY}|g"   "$CONFIG"
+
+          echo "Injection tamamlandı. Satır sayısı: $(wc -l < $CONFIG)"
+
+      # ── 5) Doğrulama: Hâlâ placeholder var mı? ──────────────────────────────
+      - name: Verify injection was successful
+        shell: bash
         run: |
-          if grep -q "REPLACE_WITH" Kodlar/config.js; then
-            echo "ERROR: Placeholder values still present in config.js. Check your repository secrets!"
+          CONFIG="$GITHUB_WORKSPACE/config.js"
+
+          if grep -q "REPLACE_WITH" "$CONFIG"; then
+            echo "HATA: config.js içinde hâlâ placeholder değerler var!"
+            echo "Lütfen GitHub Secrets'ı kontrol et:"
+            echo "  Settings → Secrets and variables → Actions"
+            echo "  EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY"
             exit 1
           fi
-          echo "config.js injection successful."
 
-      # 5) GitHub Pages artifact'ını hazırla (tüm repo kök dizinini yükle)
+          echo "✅ Tüm placeholder'lar başarıyla değiştirildi."
+
+      # ── 6) GitHub Pages artifact'ını hazırla ────────────────────────────────
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Sitenin kök dizini — ihtiyaca göre "Kodlar" olarak da değiştirilebilir
-          path: "."
+          path: "${{ github.workspace }}"
 
-      # 6) Deploy!
+      # ── 7) Deploy! ───────────────────────────────────────────────────────────
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
