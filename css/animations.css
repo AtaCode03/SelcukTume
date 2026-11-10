@@ -1,0 +1,275 @@
+/* ============================================================
+   Selçuk TÜME — Animation Library
+   ============================================================ */
+
+/* ── Keyframes ───────────────────────────────────────────── */
+
+@keyframes fadeUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(130, 165, 64, 0.15),
+                    0 0 60px rgba(130, 165, 64, 0.05);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(130, 165, 64, 0.3),
+                    0 0 80px rgba(130, 165, 64, 0.1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes lineGrow {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+/* ── Reveal Base State ───────────────────────────────────── */
+/* Elements start hidden and are revealed by scroll-reveal.js */
+
+[data-reveal] {
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-reveal="fade-up"] {
+    transform: translateY(40px);
+}
+
+[data-reveal="fade-in-left"] {
+    transform: translateX(-40px);
+}
+
+[data-reveal="fade-in-right"] {
+    transform: translateX(40px);
+}
+
+[data-reveal="scale-in"] {
+    transform: scale(0.7);
+}
+
+[data-reveal="bounce-in"] {
+    transform: scale(0.5);
+}
+
+[data-reveal="fade-in"] {
+    /* Only opacity, no transform */
+}
+
+/* ── Revealed State ──────────────────────────────────────── */
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+/* ── Stagger Children ────────────────────────────────────── */
+[data-reveal-stagger] > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-reveal-stagger].revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delay per child (set via JS or inline) */
+[data-reveal-stagger].revealed > *:nth-child(1)  { transition-delay: 0ms; }
+[data-reveal-stagger].revealed > *:nth-child(2)  { transition-delay: 100ms; }
+[data-reveal-stagger].revealed > *:nth-child(3)  { transition-delay: 200ms; }
+[data-reveal-stagger].revealed > *:nth-child(4)  { transition-delay: 300ms; }
+[data-reveal-stagger].revealed > *:nth-child(5)  { transition-delay: 400ms; }
+[data-reveal-stagger].revealed > *:nth-child(6)  { transition-delay: 500ms; }
+[data-reveal-stagger].revealed > *:nth-child(7)  { transition-delay: 600ms; }
+[data-reveal-stagger].revealed > *:nth-child(8)  { transition-delay: 700ms; }
+[data-reveal-stagger].revealed > *:nth-child(9)  { transition-delay: 800ms; }
+[data-reveal-stagger].revealed > *:nth-child(10) { transition-delay: 900ms; }
+[data-reveal-stagger].revealed > *:nth-child(11) { transition-delay: 1000ms; }
+[data-reveal-stagger].revealed > *:nth-child(12) { transition-delay: 1100ms; }
+[data-reveal-stagger].revealed > *:nth-child(13) { transition-delay: 1200ms; }
+[data-reveal-stagger].revealed > *:nth-child(14) { transition-delay: 1300ms; }
+
+/* ── Direct Animation Classes (for non-scroll use) ───────── */
+.anim-fade-up {
+    animation: fadeUp 0.7s ease forwards;
+}
+
+.anim-fade-in-left {
+    animation: fadeInLeft 0.7s ease forwards;
+}
+
+.anim-fade-in-right {
+    animation: fadeInRight 0.7s ease forwards;
+}
+
+.anim-scale-in {
+    animation: scaleIn 0.6s ease forwards;
+}
+
+.anim-bounce-in {
+    animation: bounceIn 0.6s ease forwards;
+}
+
+.anim-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.anim-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* ── Delay Utilities ─────────────────────────────────────── */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* ── Hero Parallax Container ─────────────────────────────── */
+.parallax-bg {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* ── Filter Transition (for member cards) ────────────────── */
+.filter-transition {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-hidden {
+    opacity: 0;
+    transform: scale(0.85);
+    position: absolute;
+    pointer-events: none;
+}
+
+.filter-visible {
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
+    pointer-events: auto;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    [data-reveal-stagger] > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition-delay: 0ms !important;
+    }
+
+    .parallax-bg {
+        transform: none !important;
+    }
+}
+

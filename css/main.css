@@ -1,0 +1,233 @@
+/* ============================================================
+   Selçuk TÜME — Global Styles
+   ============================================================ */
+
+/* ── Font Faces ──────────────────────────────────────────── */
+@font-face {
+    font-family: 'Akhand';
+    src: url('https://fonts.cdnfonts.com/css/akhand');
+    font-display: swap;
+}
+
+/* ── Custom Font Utilities ───────────────────────────────── */
+.font-akhand-bold {
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+
+.font-akhand-regular {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+/* ── Material Symbols ────────────────────────────────────── */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+/* ── Editorial & Layout Utilities ────────────────────────── */
+.editorial-gradient {
+    background: linear-gradient(135deg, #0b2840 0%, #163a5a 100%);
+}
+
+.hero-overlay {
+    background: linear-gradient(to right, rgba(11, 40, 64, 0.75) 0%, rgba(11, 40, 64, 0.15) 100%);
+}
+
+.clean-shadow {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+}
+
+.editorial-shadow {
+    box-shadow: 0px 20px 40px rgba(35, 31, 32, 0.06);
+}
+
+.logo-glow {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Mobile Menu ─────────────────────────────────────────── */
+#mobile-menu {
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+#mobile-menu.open {
+    max-height: 400px;
+    opacity: 1;
+}
+
+/* ── Smooth Scrolling ────────────────────────────────────── */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── Selection Color ─────────────────────────────────────── */
+::selection {
+    background: rgba(130, 165, 64, 0.25);
+    color: #0b2840;
+}
+
+/* ── Skip to Content (Accessibility) ─────────────────────── */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    z-index: 9999;
+    padding: 12px 24px;
+    background: #82a540;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ── Scroll Indicator ────────────────────────────────────── */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s infinite;
+}
+
+@keyframes scrollBounce {
+    0%   { opacity: 0; transform: rotate(45deg) translate(-8px, -8px); }
+    50%  { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) translate(8px, 8px); }
+}
+
+/* ── Timeline ────────────────────────────────────────────── */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #82a540 10%, #82a540 90%, transparent);
+    transform: translateX(-50%);
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #82a540;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 3px rgba(130, 165, 64, 0.3);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+    }
+    .timeline-dot {
+        left: 20px;
+    }
+}
+
+/* ── Card Hover Lift ─────────────────────────────────────── */
+.card-hover {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Grayscale to Color on Hover ─────────────────────────── */
+.grayscale-hover {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+.grayscale-hover:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* ── Technology Tags ─────────────────────────────────────── */
+.tech-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(130, 165, 64, 0.1);
+    color: #82a540;
+    border: 1px solid rgba(130, 165, 64, 0.2);
+}
+
+/* ── Status Badges ───────────────────────────────────────── */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.status-badge--active {
+    background: rgba(130, 165, 64, 0.12);
+    color: #5a7a20;
+}
+
+.status-badge--active::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #82a540;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* ── Navbar Scroll Effect ────────────────────────────────── */
+.nav-scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+}
+
