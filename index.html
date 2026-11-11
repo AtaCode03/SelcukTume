@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Selçuk TÜME | Tarım Teknolojileri Öğrenci Topluluğu</title>
     <meta name="description" content="Selçuk Üniversitesi Tarım Teknolojileri Kümelenmesi Öğrenci Topluluğu – inovasyon odaklı projeler, interdisipliner ekip ve geleceğin tarım teknolojileri." />
-    
+
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Selçuk TÜME | Tarım Teknolojileri Öğrenci Topluluğu" />
@@ -15,7 +15,7 @@
     <meta name="theme-color" content="#0b2840" />
 
     <!-- Preload Hero Background -->
-    <link rel="preload" as="image" href="assets/AnaSayfaBg.png" />
+    <link rel="preload" as="image" href="/assets/AnaSayfaBg.png" />
 
     <!-- Google Fonts & Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
 
     <!-- Shared Stylesheets -->
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
 
     <!-- Tailwind CSS CDN & Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -65,9 +65,11 @@
     </script>
 
     <!-- Shared JavaScript Files -->
-    <script src="js/main.js" defer></script>
-    <script src="js/scroll-reveal.js" defer></script>
-    <script src="js/counter.js" defer></script>
+    <script src="/js/main.js" defer></script>
+    <script src="/js/scroll-reveal.js" defer></script>
+    <script src="/js/counter.js" defer></script>
+  <link rel="canonical" href="https://selcuktume.com.tr/" />
+  <script>if (location.pathname === '/index.html') location.replace('/' + location.search + location.hash);</script>
 </head>
 
 <body class="bg-surface font-akhand-regular text-on-surface antialiased selection:bg-brand-green/20 selection:text-brand-navy">
@@ -78,14 +80,14 @@
     <!-- 2. Navbar -->
     <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md font-akhand-regular antialiased text-sm tracking-tight border-b border-surface-container-high/50 transition-all duration-300">
         <div class="flex justify-between items-center px-8 md:px-12 py-3.5 max-w-7xl mx-auto">
-            <a href="index.html" class="text-xl md:text-2xl font-akhand-bold text-brand-navy uppercase tracking-tighter hover:text-brand-green transition-colors duration-300">
+            <a href="/" class="text-xl md:text-2xl font-akhand-bold text-brand-navy uppercase tracking-tighter hover:text-brand-green transition-colors duration-300">
                 Selçuk tüme
             </a>
             <div class="hidden md:flex space-x-8 items-center">
-                <a class="text-brand-green font-bold border-b-2 border-brand-green pb-1" href="index.html">Anasayfa</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="uyelerimiz.html">Üyelerimiz</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="projelerimiz.html">Projelerimiz</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="iletisim.html">İletişim</a>
+                <a class="text-brand-green font-bold border-b-2 border-brand-green pb-1" href="/">Anasayfa</a>
+                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="/uyelerimiz/">Üyelerimiz</a>
+
+                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors duration-300" href="/iletisim/">İletişim</a>
             </div>
             <div class="flex items-center space-x-2">
                 <a aria-label="Instagram" class="text-brand-navy hover:text-brand-green transition-colors duration-300 flex items-center justify-center p-2 rounded-lg hover:bg-brand-green/10" href="https://www.instagram.com/selcuktume/" target="_blank" rel="noopener noreferrer">
@@ -107,10 +109,10 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-surface-container-high/30">
             <div class="flex flex-col px-8 py-4 space-y-4">
-                <a class="text-brand-green font-bold py-2 border-b border-surface-container-high/50" href="index.html">Anasayfa</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2 border-b border-surface-container-high/50" href="uyelerimiz.html">Üyelerimiz</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2 border-b border-surface-container-high/50" href="projelerimiz.html">Projelerimiz</a>
-                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2" href="iletisim.html">İletişim</a>
+                <a class="text-brand-green font-bold py-2 border-b border-surface-container-high/50" href="/">Anasayfa</a>
+                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2 border-b border-surface-container-high/50" href="/uyelerimiz/">Üyelerimiz</a>
+
+                <a class="text-brand-navy font-medium hover:text-brand-green transition-colors py-2" href="/iletisim/">İletişim</a>
             </div>
         </div>
     </nav>
@@ -127,7 +129,7 @@
                      alt="Selçuk TÜME tarım arazisi arka plan"
                      fetchpriority="high"
                      loading="eager"
-                     src="assets/AnaSayfaBg.png" />
+                     src="/assets/AnaSayfaBg.png" />
                 <div class="absolute inset-0 hero-overlay"></div>
             </div>
 
@@ -141,11 +143,7 @@
                         Teknolojinin sınırlarını zorlayan, inovasyon odaklı projelerimizle yarının dünyasını farklı disiplinlerin gücüyle bugünden inşa ediyoruz. Akademik disiplin, pratik uygulama ve çok seslilik bir arada.
                     </p>
                     <div class="flex flex-wrap gap-4" data-reveal="fade-up" data-reveal-delay="350">
-                        <a href="projelerimiz.html"
-                           class="bg-brand-green text-white px-7 py-3.5 rounded-xl font-akhand-bold text-base hover:bg-[#729235] hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 group">
-                            <span>Projelerimizi İncele</span>
-                            <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
-                        </a>
+
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJx0UnQ5TlKlTvnm6l4myq7bxz3Gm96ybTbINIBhqI7Y583w/viewform"
                            target="_blank" rel="noopener noreferrer"
                            class="bg-transparent border-2 border-white text-white px-7 py-3.5 rounded-xl font-akhand-bold text-base hover:bg-white/15 transition-all duration-300 inline-flex items-center gap-2">
@@ -160,7 +158,7 @@
                     <div class="relative w-full max-w-[280px] sm:max-w-[340px] aspect-square logo-glow bg-white rounded-full flex items-center justify-center p-6 mx-auto anim-float">
                         <img alt="Selçuk Üniversitesi Tarım Teknolojileri Kümelenmesi Öğrenci Topluluğu Logo"
                              class="w-full h-full object-contain rounded-full"
-                             src="assets/TakımLogo.jpeg" />
+                             src="/assets/TakımLogo.jpeg" />
                     </div>
                 </div>
             </div>
@@ -186,7 +184,7 @@
                         <div class="w-14 h-14 mx-auto mb-4 bg-brand-green/10 rounded-2xl flex items-center justify-center text-brand-green">
                             <span class="material-symbols-outlined text-3xl">groups</span>
                         </div>
-                        <div class="text-4xl md:text-5xl font-akhand-bold text-brand-navy" data-counter-target="12" data-counter-suffix="+" data-counter-duration="2000">12+</div>
+                        <div class="text-4xl md:text-5xl font-akhand-bold text-brand-navy" data-counter-target="130" data-counter-suffix="" data-counter-duration="2000">130</div>
                         <div class="text-xs md:text-sm font-akhand-bold text-on-surface-variant mt-2 uppercase tracking-wide">Aktif Üye</div>
                     </div>
 
@@ -236,7 +234,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pt-5 border-t border-surface-container-high/40 relative z-10">
-                            <a href="uyelerimiz.html" class="inline-flex items-center gap-1.5 text-xs font-akhand-bold text-brand-navy hover:text-brand-green transition-colors uppercase tracking-wider group/link">
+                            <a href="/uyelerimiz/" class="inline-flex items-center gap-1.5 text-xs font-akhand-bold text-brand-navy hover:text-brand-green transition-colors uppercase tracking-wider group/link">
                                 <span>Ekibimizle Tanışın</span>
                                 <span class="material-symbols-outlined text-base transition-transform group-hover/link:translate-x-1">arrow_forward</span>
                             </a>
@@ -307,7 +305,7 @@
                             </div>
                             <div class="w-full md:w-1/2 pl-12 md:pl-12 mt-4 md:mt-0" data-reveal="fade-in-right">
                                 <div class="relative bg-white p-2.5 rounded-2xl clean-shadow border border-surface-container-high/40 overflow-hidden transform md:rotate-2 hover:rotate-0 transition-transform duration-300">
-                                    <img src="assets/AnaSayfaFoto1.png" alt="Selçuk TÜME Kuruluş Ekibi" class="w-full h-auto aspect-[16/10] object-cover rounded-xl" loading="lazy" />
+                                    <img src="/assets/AnaSayfaFoto1.png" alt="Selçuk TÜME Kuruluş Ekibi" class="w-full h-auto aspect-[16/10] object-cover rounded-xl" loading="lazy" />
                                 </div>
                             </div>
                         </div>
@@ -317,7 +315,7 @@
                             <div class="timeline-dot top-2 md:top-1/2 md:-translate-y-1/2"></div>
                             <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-12 order-2 md:order-1 mt-4 md:mt-0" data-reveal="fade-in-left">
                                 <div class="relative bg-white p-2.5 rounded-2xl clean-shadow border border-surface-container-high/40 overflow-hidden transform md:-rotate-2 hover:rotate-0 transition-transform duration-300">
-                                    <img src="assets/ProjelerimizKare.jpg" alt="Selçuk TÜME TEKNOFEST Projeleri" class="w-full h-auto aspect-square object-cover rounded-xl" loading="lazy" />
+                                    <img src="/assets/ProjelerimizKare.jpg" alt="Selçuk TÜME TEKNOFEST Projeleri" class="w-full h-auto aspect-square object-cover rounded-xl" loading="lazy" />
                                 </div>
                             </div>
                             <div class="w-full md:w-1/2 pl-12 md:pl-12 md:text-left order-1 md:order-2" data-reveal="fade-in-right">
@@ -341,7 +339,7 @@
                             </div>
                             <div class="w-full md:w-1/2 pl-12 md:pl-12 mt-4 md:mt-0" data-reveal="fade-in-right">
                                 <div class="relative bg-white p-2.5 rounded-2xl clean-shadow border border-surface-container-high/40 overflow-hidden transform md:rotate-2 hover:rotate-0 transition-transform duration-300">
-                                    <img src="assets/TeknofestStandEkip.jpg" alt="TEKNOFEST Kapsül TÜME İNGEK Standı" class="w-full h-auto aspect-[16/11] object-cover rounded-xl" loading="lazy" />
+                                    <img src="/assets/TeknofestStandEkip.jpg" alt="TEKNOFEST Kapsül TÜME İNGEK Standı" class="w-full h-auto aspect-[16/11] object-cover rounded-xl" loading="lazy" />
                                 </div>
                             </div>
                         </div>
@@ -366,7 +364,7 @@
                             <span class="inline-block px-3 py-1 bg-brand-green text-white text-[11px] font-akhand-bold rounded-full uppercase tracking-wider">Ana Destekçi</span>
                         </div>
                         <div class="h-28 flex items-center justify-center my-4">
-                            <img src="assets/TümeLogo.png" alt="TÜME - Türkiye Mühendisler Ekosistemi" class="max-h-24 max-w-[200px] object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <img src="/assets/TümeLogo.png" alt="TÜME - Türkiye Mühendisler Ekosistemi" class="max-h-24 max-w-[200px] object-contain transition-transform duration-300 group-hover:scale-105" />
                         </div>
                         <h3 class="text-lg font-akhand-bold text-brand-navy mb-2">TÜME Ekosistemi</h3>
                         <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed mb-6">Türkiye Mühendisler Ekosistemi; projelerimizin ana hamisi, mentörü ve stratejik kurumsal partnerimizdir.</p>
@@ -382,7 +380,7 @@
                             <span class="inline-block px-3 py-1 bg-brand-navy/10 text-brand-navy text-[11px] font-akhand-bold rounded-full uppercase tracking-wider">Proje Destekçisi</span>
                         </div>
                         <div class="h-28 flex items-center justify-center my-4">
-                            <img src="assets/KapsulLogo.png" alt="Kapsül Teknoloji Platformu" class="max-h-20 max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <img src="/assets/KapsulLogo.png" alt="Kapsül Teknoloji Platformu" class="max-h-20 max-w-[180px] object-contain transition-transform duration-300 group-hover:scale-105" />
                         </div>
                         <h3 class="text-lg font-akhand-bold text-brand-navy mb-2">Kapsül Platformu</h3>
                         <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed mb-6">TEKNOFEST hazırlık sürecimizde teknik altyapı, atölye olanakları ve yarışma mentörlüğü sağlar.</p>
@@ -398,7 +396,7 @@
                             <span class="inline-block px-3 py-1 bg-brand-navy/10 text-brand-navy text-[11px] font-akhand-bold rounded-full uppercase tracking-wider">Akademik Destek</span>
                         </div>
                         <div class="h-28 flex items-center justify-center my-4">
-                            <img src="assets/SelcukUniversitesiLogo.png" alt="Selçuk Üniversitesi" class="max-h-24 max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <img src="/assets/SelcukUniversitesiLogo.png" alt="Selçuk Üniversitesi" class="max-h-24 max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-105" />
                         </div>
                         <h3 class="text-lg font-akhand-bold text-brand-navy mb-2">Selçuk Üniversitesi</h3>
                         <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed mb-6">Farklı fakültelerden akademik danışmanlarımız ve laboratuvar altyapısıyla bilimsel çalışmalarımızı destekler.</p>
@@ -433,7 +431,7 @@
                         <span>Başvuru Formunu Doldur</span>
                         <span class="material-symbols-outlined text-lg">open_in_new</span>
                     </a>
-                    <a href="uyelerimiz.html"
+                    <a href="/uyelerimiz/"
                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-xl font-akhand-bold text-base transition-all duration-300">
                         <span>Ekibimizi Tanı</span>
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
